@@ -10,26 +10,18 @@
 
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app"></div>
+    <div id="app">
+
+    </div>
     <script>
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "<p>Hola Vue</p>"
+                    attr: "src",
+                    img: "https://cdn.forbes.com.mx/2017/02/destinos-naturaleza-copia.jpg"
                 };
             },
-            // methods: {
-            //     input(e) {
-            //         console.log(e.target.value);
-            //         this.text = e.target.value
-
-            //     }
-            // },
-            template: `
-            <div v-once v-text="text"></div>
-            <div  v-html="text"></div>
-            `
-
+            template: `<img v-bind:[attr]="img" >`
         }).mount("#app");
         console.log(vm);
     </script>
