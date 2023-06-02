@@ -10,14 +10,26 @@
 
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">{{text}}</div>
+    <div id="app"></div>
     <script>
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "Hola Vue"
+                    text: "<p>Hola Vue</p>"
                 };
             },
+            // methods: {
+            //     input(e) {
+            //         console.log(e.target.value);
+            //         this.text = e.target.value
+
+            //     }
+            // },
+            template: `
+            <div v-once v-text="text"></div>
+            <div  v-html="text"></div>
+            `
+
         }).mount("#app");
         console.log(vm);
     </script>
