@@ -17,13 +17,19 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    attr: "src",
-                    img: "https://cdn.forbes.com.mx/2017/02/destinos-naturaleza-copia.jpg"
+                    counter: 0,
                 };
             },
-            template: `<img v-bind:[attr]="img" >`
+            methods: {
+                submit() {
+                    console.log('perro');
+                }
+            },
+            template: `
+            <form v-on:submit="submit">
+            <button >{{counter}}</button>
+            </form>`
         }).mount("#app");
-        console.log(vm);
     </script>
 </body>
 
