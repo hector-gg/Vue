@@ -17,20 +17,30 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    evt:"submit",
-                    counter: 0,
+                    text: "Hola Vue"
                 };
             },
-            methods: {
-                submit() {
-                    this.counter++;
-                    
-                }
-            },
+            // methods: {
+            //     input(e) {
+            //         this.text=e.target.value;
+            //     }
+            // },
             template: 
-            `<form v-on:[evt]="submit">
-            <button >{{counter}}</button>
-            </form>`
+            // `<p>{{text}}</p>
+            // <input 
+            // type="text" 
+            //  @input="input" v-on:input="input"
+            //  :value="text"  v-bind::value="text" 
+
+            //  />
+            // `
+            `
+            <p>{{text}}</p>
+            <input 
+            type="text" 
+            v-model="text"
+            />
+            `
         }).mount("#app");
     </script>
 </body>
