@@ -17,30 +17,25 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "Hola Vue"
+                    firstName:"Hector",
+                    lastName:"Galvan",
+
+                    now: new Date()
                 };
             },
-            // methods: {
-            //     input(e) {
-            //         this.text=e.target.value;
-            //     }
-            // },
+            computed:{
+                fullName(){
+                    return this.firstName + " " + this.lastName
+                },
+                today(){
+                    return this.now.toLocaleDateString();
+                }
+            },
             template: 
-            // `<p>{{text}}</p>
-            // <input 
-            // type="text" 
-            //  @input="input" v-on:input="input"
-            //  :value="text"  v-bind::value="text" 
-
-            //  />
-            // `
-            `
-            <p>{{text}}</p>
-            <input 
-            type="text" 
-            v-model="text"
-            />
-            `
+           `
+            <div> {{fullName}}</div>
+            <div> {{today}}</div>
+           `
         }).mount("#app");
     </script>
 </body>
