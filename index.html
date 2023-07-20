@@ -10,136 +10,37 @@
 
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">
-
-    </div>
+    <div id="app"></div>
     <script>
         const app = Vue.createApp({
-            data() {
-                return {
-                    text:"Accede a tu cuenta",
-                    open: false,
-                    username:"",
-                    post:[{
-                        title:"titulo 1",
-                        description:"Lorem ispum ..."
-                    },
-                    {
-                        title:"titulo 2",
-                        description:"Lorem ispum ..."
-                    },
-                    {
-                        title:"titulo 3",
-                        description:"Lorem ispum ..."
-                    },
-                    {
-                        title:"titulo 4",
-                        description:"Lorem ispum ..."
-                    },
-                    ]
-                    // styles:{
-                    //     backgroundColor: "#e5e5e5"
-                    // }
-                };
-            },
-            computed:{
-                styles(){
-                    return this.open? "open": "closed";
-                }
-            },
-            watch:{
-                open(value){
-                    //No dice cuando el watcher se activo.
-                    if (value){
-                        this.text = "Cerrar Sesión"
-                        // this.styles.backgroundColor="#b5e7a0"
-                    }else{
-                        this.text = "Accede a tu cuenta"
-                        this.username=""
-                        // this.styles.backgroundColor="#eca1a6"
-                    }
-                }
-            },
             template: 
-           `
+            `
+            <div>
+                <v-layout>
+                    <template v-slot:header>
+                        <button>Titulo</button>    
+                    </template >
+                    <template v-slot:content>
+                        Lorem ipsum
+                    </template >
+                </v-layout>
+            </div>
+            `
+        });
 
-            <div class="container" :class="styles">
-                <h2>{{text}} </h2>
-                <div v-if="open"> 
-                    <p>Hola,  {{username}} </p>
-                    <div class="lista">
-                        <item 
-                        v-for="(item,i) in post" 
-                        :key="i" 
-                        :post="item"
-                        />
-                    </div>
-                </div>
-                <div v-else> 
-                    <div>Username: </div>
-                    <input type="text" v-model="username"/>
-                </div>
-
-                <button @click ="open = !open">
-                    <div v-if="!open">Acceder</div>
-                    <div v-else>Salir</div>
-
-                </button>
+        app.component("v-layout",{
+            template:`
+            <header>
+                <slot name="header"></slot>
+            </header>    
+            <div>
+                <slot  name="content"></slot>
             </div>
             `
         })
         
-        app.component("item",{
-            props:["post"],
-            template:
-            `
-            <div class="item">
-                <div class="title">{{post.title}} </div>
-                <p>{{post.description}}</p>
-            </div>
-            `
-        });
         const vm=app.mount("#app");
     </script>
-    <style>
-        html, body {
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        #app, .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-        }
-        button {
-            margin-top: 24px;
-            border: none;
-            background-color: white;
-            padding: 8px 24px;
-            border-radius: 12px;
-        }
-        .closed {
-            background-color: #eca1a6;
-        }
-        .open {
-            background-color: #b5e7a0;
-        }
-        .list{
-            display: flex;
-            flex-direction: column;
-        }
-        .item{
-            border: 1px solid black;
-        }
-        .title{
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-    </style>
 
 </body>
 
