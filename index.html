@@ -16,36 +16,23 @@
                     text:"Hola vue"
                 }
             },
-            // provide:{
-            //     otroTexto:"Hola mundo"
-            // },
-            
-            provide(){
-                return{
-                    otroTexto:this.text
-                }
-            },
             template:
             `
-            <div>{{text}}</div>
-            <otro/>
+            <v-button ref="elemento" :label="text"></v-button>
             `
-        });      
-        app.component("otro",{
-            
+        })
+
+        app.component("v-button",{
+            props:["label"],
             template:
             `
-            <tercero/>
+            <button> {{label}}</button>
             `
-        }) 
-        app.component("tercero",{
-            inject:["otroTexto"],
-            template:
-            `
-            <div>{{otroTexto}}</div>
-            `
-        }) 
+        });
+              
         const vm=app.mount("#app");
+        console.log(vm.$props);
+
     </script>
 </body>
 
